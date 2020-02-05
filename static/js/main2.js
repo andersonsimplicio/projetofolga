@@ -1,0 +1,1 @@
+window.day_off = new CalcController;

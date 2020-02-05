@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% load static %} {% block main %}
+<!-- Default form subscription -->
+<div class="container col-lg-6 mt-5 pt-5">
+    {% for message in messages%}
+    <div class="alert alert-danger"><strong>Erro!
+        </strong>{{message}}</div>
+    {% endfor%} {% if form.errors %} {% for field in form %} {% for error in field.errors %} <label for="">
+        {{field.label}}: </label>
+    <p> {{ error|escape }} </p> {% endfor %} {% endfor %} {% for error in form.non_field_errors %} {{ error|escape }} {% endfor %} {% endif %}
+    <form class="text-center border border-light p-5" action="{% url 'cad_coord'%}" method="POST">
+        {%csrf_token%}
+        <div class="container col-md-8">
+            <p class="h4 mb-4">Faça seu cadastro</p>
+
+            <!-- Name -->
+            <input type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="Nome" name="username">
+
+            <!-- Email -->
+            <input type="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" required>
+            <!-- Senha -->
+            <input type="password" name="password1" id="defaultRegisterFormPassword" class="form-control" placeholder="Senha" aria-describedby="" required>
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                Sua senha deve conter pelo menos 8 caracteres
+            </small>
+            <input type="password" name="password2" id="defaultRegisterFormPassword" class="form-control" placeholder="Confirme sua Senha" aria-describedby="" required>
+            <!-- Equipe -->
+            <div class="md-form ">
+                <p>Equipe que coordena</p>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline mb-2">
+                <input type="radio" class="custom-control-input" id="radioOperador" name="equipe" value="RO">
+                <label class="custom-control-label" for="radioOperador">Rádio Operadores</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline mt-2">
+                <input type="radio" class="custom-control-input" id="tarm" name="equipe" value="TARM">
+                <label class="custom-control-label" for="tarm">Auxiliares de Regulação Médica</label>
+            </div>
+
+            <!-- Sign in button -->
+            <div class="md-form ">
+                <button class="btn btn-info btn-lg" type="submit">Cadastre-se</button>
+                <br>
+                <p>Ou faça <a href="{% url 'login'%}">Login</a> </p>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Default form subscription -->{% endblock %}

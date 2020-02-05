@@ -1,0 +1,166 @@
+{% extends "base.html" %} {% load static %} {% block main %}
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="{% url 'homecood' %}">Coordenador</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'listar_func'%}">Funcionários Cadastrados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active disabled" href="{% url 'escala_mes'%}">Escala Atual</a>
+            </li>
+        </ul>
+        <!-- Links -->
+
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!-- Dayoff table -->
+<a href="{% url 'pdf' %}" class="btn btn-red">Exportar escala como Pdf</a>
+<div class="container col-lg-10 mt-5">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-sm text-center" id="tabela1">
+            <caption>Escala Tarms</caption>
+            <thead class="thead-dark">
+                <tr>
+
+                    <th scope="row" rowspan="3" class="text-center pb-5">Nomes</th>
+                    <th scope="col" colspan="8" class="text-center"><span id="week" name="week"></span>: <span id="data"></span>
+                        <br>
+                        <br>
+                        <br>
+                        <span id="hora"></span>
+                    </th>
+                    <th scope="col" colspan="8" class="text-center">
+                        <i class="fas fa-calendar-alt fa-bolt text-light fa-2x pr-3 pb-4"></i><span class="h3 ">{{mes}}/
+                            {{ano}}
+                        </span></th>
+                    <th scope="col" colspan="8" class="text-center pb-5">
+                        <form method="POST" action=".">
+                            {% csrf_token%}
+                            <select class=" browser-default custom-select " id="selected_month" name="selected_month" style="width:150px;">
+                                <option value=1>Janeiro</option>
+                                <option value=2>Fevereiro</option>
+                                <option value=3>Março</option>
+                                <option value=4>Abril</option>
+                                <option value=5>Maio</option>
+                                <option value=6>Junho</option>
+                                <option value=7>Julho</option>
+                                <option value=8>Agosto</option>
+                                <option value=9>Setembro</option>
+                                <option value=10>Outubro</option>
+                                <option value=11>Novembro</option>
+                                <option value=12>Dezembro</option>
+                            </select>
+                    </th>
+                    <th scope="col" colspan="7" class="">
+                        <select class=" browser-default custom-select" id="selected_year" name="selected_year" style="width:150px;">
+                            <option value=2019>2019</option>
+                            <option value=2020>2020</option>
+                            <option value=2021>2021</option>
+                            <option value=2022>2022</option>
+                            <option value=2023>2023</option>
+                            <option value=2024>2024</option>
+                            <option value=2025>2025</option>
+                            <option value=2026>2026</option>
+                            <option value=2027>2027</option>
+                            <option value=2028>2028</option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-sm btn-primary">Selecionar a Data</button>
+                        </form>
+                    </th>
+                </tr>
+                <tr class="table-light table-bordered">
+                    {%for days in range%}
+                    <td>{{ days }}</td>
+                    {%endfor%}
+                </tr>
+                <tr class="table-light table-bordered">
+                    {%for days in semana%}
+                    <td>{{days}} </td>
+                    {%endfor%}
+                </tr>
+            </thead>
+            <tbody>
+                {% for fun in escala%}
+                <tr>
+                    <td class="bg-dark text-light">{{fun.nome}}</td>
+                    {% for i in fun.escala %} {% if i == " A"%}
+                    <td class="bg-success">{{i}}</td>
+                    {% elif i == " B"%}
+                    <td class="bg-info">{{i}}</td>
+                    {% elif i == " C"%}
+                    <td class="bg-warning">{{i}}</td>
+                    {% elif i == " D"%}
+                    <td class="bg-danger">{{i}}</td>
+                    {%elif i == "E"%}
+                    <td class="bg-dark text-light">{{i}}</td>
+                    {%endif%}{% endfor %}
+                </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mb-5 pb-5">
+    <div class="row">
+        <div class="col">
+            <table class="table text-center table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" colspan="2">Folguistas </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for func in plantonistas%} {% if func.extra == 'Folguista'%}
+                    <tr>
+                        <td class="bg-dark text-light">E</td>
+                        <td>{{func.nome}} {{func.sobrenome}}</td>
+                        {%endif%} {%endfor%}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table text-center table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" colspan="2">Folgas aos Domingos </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in domingos.items %}
+                    <tr>
+                        <td class="bg-dark text-light">{{key}}</td>
+                        <td>Domingo dia : {{value}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% block nav%}
+<ul class="navbar-nav">
+    {% if user.is_authenticated %}
+        <p class="logged-in-p">
+            Olá {{ user.username }}, seja bem vindo!
+            <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
+        </p>
+    {% endif %}
+</ul> {% endblock %}
+{% block main %}
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="{% url 'homecood' %}">Coordenador</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_func'%}">Funcionários Cadastrados</a>
+                </li>
+            </ul>
+
+        </ul>
+</nav>
+<!--/.Navbar-->
+{% block menu %}
+<div class="container col-lg-8 mt-5">
+    <div class="row">
+        <div class="col-3 pt-5">
+            <p class="h2 text-center p-3">Menu</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="{% url 'cad_plantao'%}" class="a-link"><i class="fas fa-calendar-alt pr-2"></i>Cadastrar
+                        Plantões</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'cad_func'%}" class="a-link"><i class="fas fa-user-friends"></i>Cadastrar
+                        Funcionário</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'cad_folga'%}" class="a-link"><i class="fas fa-calendar-day pr-3"></i>Cadastrar
+                        Folgas</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'cad_plantao_extra'%}" class="a-link"><i class="fas fa-address-book"></i>Cadastrar
+                        Plantão Extra</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'plantao_dia'%}" class="a-link"><i class="fas fa-calendar-day"></i>
+                        Folgas </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'search_per_day' %}" class="a-link"><i class="fas fa-calendar-day"></i>
+                        Busca por Dia </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-9">
+
+            {% block cad%}
+
+            <div class=" card-body px-lg-5 pt-5">
+                <p class="h2 text-center"><i class="fas fa-calendar-alt"> Cadastrar Plantão</i> </p>
+                <form class="text-center border border-light p-5 mr-auto" action="{% url 'cad_plantao'%}" method="POST">
+                    {% csrf_token %}
+                    <div class="w-75 mx-auto">
+                        <div class="form-row mb-2">
+                            <!-- Name -->
+                            <div class="col-4">
+                                <p>Nome do Plantão</p>
+                            </div>
+                            <div class="col-8">
+                                <select class="browser-default custom-select" name="turno">
+                                    <option selected disabled>Escolha o nome do Plantão</option>
+                                    <option value="NDA">Nenhuma das opções</option>
+                                    <option value="A - Madrugada">A - Madrugada</option>
+                                    <option value="B - Manhã">B - Manhã</option>
+                                    <option value="C - Tarde">C - Tarde</option>
+                                    <option value="D - Noite">D -Noite</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-2">
+                            <div class="col-4">
+                                <p>Intervalo</p>
+                            </div>
+                            <div class="col-8">
+
+                                <select class="browser-default custom-select" name="intervalo">
+                                    <option selected disabled></option>
+
+                                    <option value="Mad">00:00 as 06:00</option>
+                                    <option value="Man">06:00 as 12:00</option>
+                                    <option value="Tar">12:00 as 18:00</option>
+                                    <option value="Noi">18:00 as 00:00</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-red my-4 " type="submit">Cadastrar Plantão</button>
+                        <hr>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        {% endblock%}
+    </div>
+</div>
+{% endblock%} {% endblock%}

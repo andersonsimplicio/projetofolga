@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SAMU || Escala {% if coordenador.equipe == "RO"%} RO's {%elif coordenador.equipe == "TARM"%} TARM's {%else%} {%endif%}
+    </title>
+
+    <style type="text/css">
+        @page {
+            size: landscape;
+            margin: 0cm;
+            @bottom-left {
+                color: #1ee494;
+                font-family: Pacifico;
+                content: 'WhPages 2020';
+            }
+            @bottom-right {
+                color: #a9a;
+                content: '';
+                font-family: Pacifico;
+                font-size: 9pt;
+            }
+        }
+        
+        table,
+        th,
+        td {
+            height: auto;
+            border-collapse: separate;
+            margin-left: 5%;
+            text-align: center;
+        }
+        
+        th {
+            height: auto;
+            width: 100vw;
+            background-color: rgb(52, 58, 64);
+            color: white;
+        }
+        
+        td {
+            text-align: center;
+            padding: 5px;
+            width: 5px;
+        }
+        
+        .name {
+            background-color: rgb(52, 58, 64);
+            color: white;
+            width: auto;
+            font-size: 13px;
+        }
+        
+        .bg-success {
+            background-color: rgb(0, 200, 81);
+        }
+        
+        .bg-warning {
+            background-color: rgb(255, 187, 51);
+        }
+        
+        .bg-info {
+            background-color: rgb(51, 181, 229);
+        }
+        
+        .bg-danger {
+            background-color: rgb(255, 53, 71);
+        }
+        
+        .bg-dark {
+            background-color: rgb(36, 41, 58);
+            color: white;
+        }
+        
+        .table-responsive {
+            justify-content: center;
+        }
+        
+        .inside_cell {
+            font-size: 13px;
+        }
+        
+        .container {
+            margin-top: 30px;
+            position: absolute;
+            width: 100%;
+            height: auto;
+            /* background-color: black; */
+            margin-left: 5%;
+        }
+        
+        .left {
+            margin-left: 0;
+            /* background-color: green; */
+            width: 50%;
+        }
+        
+        .table-folguistas {
+            width: 80%;
+        }
+        
+        .table-folguistas td {
+            width: auto;
+        }
+        
+        .right {
+            margin-top: -150px;
+            position: relative;
+            margin-right: 0;
+            margin-left: 40%;
+            width: 80%;
+        }
+        
+        .table-domingos {
+            width: 50%;
+            font-size: 15px;
+        }
+        
+        .t-head-domingos,
+        .t-head-folguistas {
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <!-- Dayoff table -->
+
+    <div class="table-responsive">
+        <table class="table" id="tabela1">
+            <caption> Escala {% if coordenador.equipe == "RO"%}
+                <span>Rádios Operadores</span> {%else%}
+                <span>Auxiliares de Regulação Médica</span> {%endif%}
+            </caption>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="row" rowspan="3" class="text-center pb-5">Nomes</th>
+
+                    <th scope="col" colspan="35" class="text-center" style="height: 50px;">{{mes}} / {{ano}}</th>
+                </tr>
+                <tr scope="col" colspan="35" class="text-center pb-5">
+                    {%for days in range%}
+                    <td style="font-size: 12px;">{{ days }}</td>
+                    {%endfor%}
+                </tr>
+                <tr scope="col" colspan="35" class="text-center pb-5">
+                    {%for days in semana%}
+                    <td style="font-size: 12px;">{{days}} </td>
+                    {%endfor%}
+                </tr>
+            </thead>
+            <tbody>
+                {% for fun in escala%}
+                <tr class="bg-success">
+                    <td class="name">{{fun.nome}}</td>
+                    {% for i in fun.escala %} {% if i == "A"%}
+                    <td class="bg-success inside_cell">{{i}}</td>
+                    {% elif i == "B"%}
+                    <td class="bg-info inside_cell">{{i}}</td>
+                    {% elif i == "C"%}
+                    <td class="bg-warning inside_cell">{{i}}</td>
+                    {% elif i == "D"%}
+                    <td class="bg-danger inside_cell">{{i}}</td>
+                    {%elif i == "E"%}
+                    <td class="bg-dark inside_cell">{{i}}</td>
+                    {%endif%} {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<div class="container">
+    <div class="left">
+        <table class="table-folguistas">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" colspan="2" class="t-head-folguistas">Folguistas </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for func in plantonistas%} {% if func.extra == 'Folguista'%}
+                <tr>
+                    <td class="bg-dark text-light" id="folguistas">E</td>
+                    <td>{{func.nome}} {{func.sobrenome}}</td>
+                    {%endif%} {%endfor%}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="right">
+        <table class="table-domingos">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" colspan="2" class="t-head-domingos">Folgas aos Domingos </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in domingos.items %}
+                <tr>
+                    <td class="bg-dark text-light">{{key}}</td>
+                    <td>Domingo dia : {{value}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</html>

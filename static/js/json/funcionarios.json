@@ -1,0 +1,90 @@
+{
+    "funcionarios":[
+        {
+        "id": "01",
+        "nome": "Jonathan Júnior de Souza Freitas",
+        "equipe": "A",
+        "turno" : 1
+        },
+        {
+            "id": "02",
+            "nome": "Julia Maria de Araújo Ferreira",
+            "equipe": "A",
+            "turno" : 1
+        },
+        {
+            "id": "03",
+            "nome": "Dayelle de Oliveira Fernandes",
+            "equipe": "B",
+            "turno" : 2
+        },
+        {
+            "id": "04",
+            "nome": "Geovane Souza Dias",
+            "equipe": "B",
+            "turno" : 2
+        },
+        {
+            "id": "05",
+            "nome": "João Victor Silva Abreu",
+            "equipe": "B",
+            "turno" : 2
+        },
+        {
+            "id": "06",
+            "nome": "Jacqueline Bianca Ferreira",
+            "equipe": "C",
+            "turno" : 3
+        },
+        {
+            "id": "07",
+            "nome": "Geovanna de Fátima Moreira Lima",
+            "equipe": "C",
+            "turno" : 3
+        },
+        {
+            "id": "08",
+            "nome": "Rayane Silva Miranda",
+            "equipe": "C",
+            "turno" : 3
+        },
+        {
+            "id": "09",
+            "nome": "Thiago Stefani Liguori",
+            "equipe": "D",
+            "turno" : 4
+        },
+        {
+            "id": "10",
+            "nome": "Monique Andrade Pissolati",
+            "equipe": "D",
+            "turno" : 4
+        },
+        {
+            "id": "11",
+            "nome": "Leonardo Gomes da Silva",
+            "equipe": "D",
+            "turno" : 4
+        },
+        {
+            "id": "12",
+            "nome": "Thamires Lucas da Silva Gomes",
+            "equipe": "E",
+            "turno" : "folga"
+        },
+        {
+            "id": "13",
+            "nome": "Lívia Caroline das Chagas",
+            "equipe": "E",
+            "turno" : "folga"
+        },
+        {
+            "id": "14",
+            "nome": "Gilberto José de Morais",
+            "equipe": "E",
+            "turno" : "folga"
+        }
+
+        ]
+
+}

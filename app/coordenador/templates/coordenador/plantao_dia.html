@@ -1,0 +1,145 @@
+{% extends "coordenador/cad_plantao.html" %} {% load static %} {% block nav%} {{block.super}} {% endblock %} {% block menu %} {{block.super}} {% endblock%} {% block cad%}
+<div class="card-body px-lg-5 pt-5">
+    <p class="h2 text-center"><i class="fas fa-calendar-day"> Folgas</i> </p>
+    <form class="text-center border border-light p-5 mr-auto" action="{% url 'plantao_dia'%}" method="POST">
+        {% for message in messages%}
+        <div class="alert alert-danger text-center"><strong>
+            </strong>{{message}}</div>
+        {% endfor%} {% csrf_token %}
+        <div class="w-75 mx-auto">
+            <div class="form-row mb-2">
+                <!-- Name -->
+                <div class="col-4">
+                    <p>Escolha o Plantão</p>
+                </div>
+                <div class="col-8">
+                    <select class="browser-default custom-select" name="plantao">
+                        <option selected disabled></option>
+                        {% for i in plantao %}
+                        {% if i == "NDA"%}
+                        <option value="{{i}}">Folguistas - E</option>
+                        {%else%}
+                        <option value="{{i}}">{{i}}</option>
+                        {%endif%}
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-row mb-2">
+                <div class="col-4">
+                    <p>Escolha o Mês</p>
+                </div>
+                <div class="col-8">
+                    <select class=" browser-default custom-select" id="month" name="month">
+                        <option value=1>Janeiro</option>
+                        <option value=2>Fevereiro</option>
+                        <option value=3>Março</option>
+                        <option value=4>Abril</option>
+                        <option value=5>Maio</option>
+                        <option value=6>Junho</option>
+                        <option value=7>Julho</option>
+                        <option value=8>Agosto</option>
+                        <option value=9>Setembro</option>
+                        <option value=10>Outubro</option>
+                        <option value=11>Novembro</option>
+                        <option value=12>Dezembro</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Escolha do ano -->
+            <div class="form-row mb-2">
+                <div class="col-4">
+                    <p>Escolha o Ano</p>
+                </div>
+                <div class="col-8">
+                    <select class=" browser-default custom-select" id="year" name="year">
+                        <option value=2020>2020</option>
+                        <option value=2021>2021</option>
+                        <option value=2022>2022</option>
+                        <option value=2023>2023</option>
+                        <option value=2024>2024</option>
+                        <option value=2025>2025</option>
+                        <option value=2026>2026</option>
+                        <option value=2027>2027</option>
+                        <option value=2028>2028</option>
+                        <option value=2029>2029</option>
+                        <option value=2030>2030</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn btn-red my-4 " type="submit">Visualizar Plantões</button>
+            <hr>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="container col-lg-8 mt-5 text-center">
+    <div class="container mb-5 pb-5">
+        <div class="row">
+            <div class="col">
+                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                    <thead class="thead-dark">
+                        <tr>
+                            {% if turno == "NDA"%}
+                            <th>Folguistas</th>
+                            {%else%}
+                            <th class="th-sm">{{turno}}
+                            </th>
+                            {%endif%}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if turno == "NDA"%} {% for plantao in folga_plantao_e %}
+                        <tr>
+                            <td> Folga : {{plantao|date:"d /M /Y"}}
+                        </tr>
+                        {% endfor%} {%else%} {% for plantao in plantaofolga %}
+
+                        <tr>
+                            <td> Folga : {{plantao.data|date:"d /M /Y"}}
+                                <span>//</span><a href="{% url 'apagar_plantao' plantao.data plantao.plantao.turno %}" class="confirm" data-toggle="confirmation" data-title="Deseja Deletar Produto?"><i
+                                        class="fa fa-trash ml-3" aria-hidden="true"></i></a>
+
+
+                                <td>
+                                    <a href="{% url 'apagar_folgas' plantao.plantao.turno plantao.data %}">Apagar todos os
+                                    plantões</a>
+                                </td>
+                        </tr>
+                        {% endfor%} {% for plantao in plantaoExtra %} {% if turno == plantao.plantao.turno%}
+                        <tr>
+                            <td>Folga( Em caráter especial) : {{plantao.data|date:"d /M /Y"}}
+                                <span>//</span><a href="{% url 'apagar_plantao' plantao.data plantao.plantao.turno %}" class="confirm" data-toggle="confirmation" data-title="Deseja Deletar Produto?"><i
+                                        class="fa fa-trash ml-3" aria-hidden="true"></i></a>
+                        </tr>
+                        {%endif%} {% endfor%} {%endif%}
+                    </tbody>
+
+
+                </table>
+            </div>
+            <div class="col">
+                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Total de Plantões</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{totalPlantoes}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

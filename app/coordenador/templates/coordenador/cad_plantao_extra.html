@@ -1,0 +1,56 @@
+{% extends "coordenador/cad_plantao.html" %}
+{% load static %}
+{% block nav%}
+{{block.super}}
+{% endblock %}
+{% block menu %}
+{{block.super}}
+{% endblock%}
+{% block cad%}
+<div class="card-body px-lg-5 pt-5">
+    {% if messages %} {%for message in messages %}
+    <div class="alert alert-danger"><strong>{{message}}</strong></div>
+    {% endfor %} {% endif %}
+    <p class="h2 text-center"><i class=" fas fa-address-book"> Cadastrar Plantão Extra</i> </p>
+    <form class="text-center border border-light p-5 mr-auto" action="{% url 'cad_plantao_extra'%}" method="POST">
+        {% csrf_token %}
+        <div class="w-75 mx-auto">
+            <div class="form-row mb-2">
+                <!-- Name -->
+                <div class="col-4">
+                    <p>Escolha o Plantão</p>
+                </div>
+                <div class="col-8">
+                    <select class="browser-default custom-select" name="plantao">
+                        <option selected disabled></option>
+                        {% for i in plantao %}
+                        {% if i.turno == "NDA"%}
+                        <option value="{{i.turno}}">Folguistas - E</option>
+                        {%else%}
+                        <option value="{{i.turno}}">{{i.turno}}</option>
+                        {%endif%}
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row mb-2">
+                <div class="col-4">
+                    <p>Defina a Data</p>
+                </div>
+                <div class="col-8">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control" name="data" id="datepicker_plantao_extra">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-red my-4 " type="submit">Plantão Extra</button>
+            <button type="reset" class="btn btn-red my-4">Limpar Campos</button>
+            <hr>
+        </div>
+    </form>
+</div>
+{% endblock%}

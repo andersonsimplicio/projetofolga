@@ -1,0 +1,54 @@
+{% extends "coordenador/cad_plantao.html" %} {% load static %} {% block nav%} {{block.super}} {% endblock %} {% block menu %} {{block.super}} {% endblock%} {% block cad%}
+
+<div class="card-body px-lg-5 pt-5">
+    <p class="h2 text-center"><i class="fas fa-user-friends"> Atualizar Funcionário</i></p>
+    <form class="text-center border border-light p-5 mr-auto" method="POST" style="color: #757575;" action="{% url 'update_func' funcionarios.id %}">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="col">
+                <!-- First name -->
+                <div class="md-form align-icon">
+                    <input type="text" id="materialRegisterFormFirstName" class="form-control pb-2" name="nome" value="{{funcionarios.nome}} " required>
+                    <label for="materialRegisterFormFirstName">Nome</label>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <div class="md-form">
+                    <input type="text" id="materialRegisterFormLastName" class="form-control" name="sobrenome" required value="{{funcionarios.sobrenome}}">
+                    <label for="materialRegisterFormLastName">Sobrenome</label>
+                </div>
+            </div>
+        </div>
+        <!-- Plantão -->
+
+        <select class="browser-default custom-select" name="turno">
+            <option value="{{funcionarios.turno}}" selected>{{funcionarios.turno}}</option>
+            {% for i in plantao %}
+            {% if i.turno == "NDA"%}
+            <option value="{{i.turno}}">Sem Plantão Definido</option>
+            {%else%}
+            <option value="{{i.turno}}">{{i.turno}}</option>
+            {%endif%}
+            {%endfor%}
+        </select>
+        </select>
+        <!-- Folguista / Feirista  -->
+        <div class="custom-control custom-radio custom-control-inline mt-4">
+            <input type="radio" class="custom-control-input" id="folguista" name="extra" value="Folguista">
+            <label class="custom-control-label" for="folguista">Folguista</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline mt-4">
+            <input type="radio" class="custom-control-input" id="feirista" name="extra" value="Feirista">
+            <label class="custom-control-label" for="feirista">Feirista</label>
+        </div>
+        <!-- Sign up button -->
+
+        <div class="md-form">
+            <button class="btn btn-red btn-rounded mt-2 waves-effect z-depth-0" type="submit">Atualizar</button>
+            <button class="btn btn-red btn-rounded mt-2 waves-effect z-depth-0" type="reset">Limpar
+                Campos</button>
+        </div>
+        <hr>
+    </form>
+</div>{% endblock%}
