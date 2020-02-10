@@ -49,7 +49,9 @@
             {% for funcionario in funcionarios %}
             <tr>
                 <td>
-                    <a href=" {% url 'update_func' funcionario.id %}"><i class="fas fa-edit"></i></a>
+                    <a href=" {% url 'update_func' funcionario.id %}">
+                        <i class="fas fa-edit"></i>
+                    </a>
                 </td>
                 <td> {{funcionario.nome}} {{funcionario.sobrenome}}</td>
                 {% if funcionario.extra == "Folguista" %}
@@ -63,28 +65,29 @@
                     <a href="{% url 'apagar_func' funcionario.id %}" data-toggle="modal" data-target="#modal_apagar_func">
                         <i class="fa fa-trash ml-3" aria-hidden="true"></i>
                     </a>
-                    <div class="modal fade" id="modal_apagar_func" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content ">
-                                <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir o funcionário?
-                                    </h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Tentar colocar o nome e o Turno do Funcionário a ser deletado -->
-                                </div>
-                                <div class="modal-footer">
-                                    <a type="button" href="{% url 'apagar_func' funcionario.id %}" class="btn btn-red">Excluir Funcionário</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
             </tr>
             {% endfor %}
+            <div class="modal fade" id="modal_apagar_func" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir o funcionário?
+                            </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Tentar colocar o nome e o Turno do Funcionário a ser deletado -->
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" href="{% url 'apagar_func' funcionario.id %}" class="btn btn-red">Excluir Funcionário</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </tbody>
         <tfoot class="thead-dark">
             <tr>
