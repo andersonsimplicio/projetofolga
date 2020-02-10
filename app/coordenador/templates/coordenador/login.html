@@ -1,41 +1,51 @@
 {% extends "base.html" %} {% load static %} {% block main %}
 
-<div class="col-sm- m-auto text-center" style="padding-top:40px">
-    {% if msg is not None%}
-    <div class="alert alert-danger" role="alert">
-        {{msg}}
-    </div>
-    {% endif %}
-    <div class="container cont-log">
-        <form class="text-center border border-light p-5 w-50 form-log" method="POST" action="{% url 'login' %}">
-            {% csrf_token %}
-            <p class="h4 mb-4"><i class="far fa-user mr-2"></i>Login</p>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-            <!-- Email -->
-            <div class="mb-4">
-                <input type="email" name="email" id="defaultLoginFormEmail" class="form-control w-75 m-auto mb-4" placeholder="E-mail">
-            </div>
-            <!-- Password -->
-            <div class="mb-4">
-                <input type="password" name="password" id="defaultLoginFormPassword" class="form-control w-75 m-auto" placeholder="Senha">
-            </div>
-            <div class="mb-4">
-                <div>
-                    <button class="btn btn-info my-4" type="submit">Entrar</button>
-                    <br>
-                </div>
-                <div class="mb-4">
-                    <div>
-                        <span>Ainda não possui cadastro?</span><br>
-                        <a href="{% url 'cad_coord'%}" class="pt-3">Cadastre-se </a>
-                    </div>
-                </div>
 
-                <!-- Sign in button -->
+<div class="container-fluid">
+    <div class="wrapper">
+    <div class="row no-gutter">
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+        
 
+<div class="col-md-6" id="lg-box">
+<div class="login-container d-flex align-items-center justify-content-center">
+    <div class="text-center">
+
+        {% if msg is not None %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{msg}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            
+        </div>
+        {% endif %}
+        
+
+    <form class="login-form text-center"  method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h1 class="mb-3 font-weight-light text-uppercase">Entrar</h1>
+        <div class="form-group">
+            <input type="email" name="email" class="form-control form-control-lg rounded-pill" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control form-control-lg rounded-pill" placeholder="Senha">
+        </div>
+
+        <div class="forgot-link d-flex align-items-center justify-content-between">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="lembrar" />
+                <label class="custom-control-label" for="lembrar">Lembrar senha</label>
             </div>
-        </form>
-    </div>
+            <a href="#">Esqueceu sua senha?</a>
+        </div>
+        <button id="login-btn" type="submit" class="btn btn-vermelho btn-block btn-lg rounded-pill mt-5">Entrar</button>
+    </form>
+</div>
+</div>
+</div>
 </div>
 
 {% endblock%}
