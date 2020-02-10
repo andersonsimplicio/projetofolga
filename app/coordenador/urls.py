@@ -12,7 +12,7 @@ urlpatterns = [
     path('listar_func/', listar_func, name='listar_func'),
     path('listar_func/apagar/<str:id>', apagar_func, name='apagar_func'),
     path('listar_func/update_func/<int:id>', update_func, name='update_func'),
-    path('cad_plantao', PlantaoView.as_view(), name='cad_plantao'),
+    path('cad_plantao/', PlantaoView.as_view(), name='cad_plantao'),
     path('plantao_dia', PlantaoDiaView.as_view(), name='plantao_dia'),
     path('apagar_plantao/<str:data>/<str:turno>',
          apagar_plantao, name='apagar_plantao'),

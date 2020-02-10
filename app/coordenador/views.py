@@ -253,10 +253,10 @@ def listar_func(request):
 def apagar_func(request, id):
     coordenador = Coordenador.objects.get(username=request.user.username)
     funcionarios = Funcionario.objects.filter(id=id,equipe=coordenador.equipe)
-    
+
     funcionarios.delete()
     funcionarios = Funcionario.objects.all().filter(equipe=coordenador.equipe)
-    
+
     if coordenador.is_authenticated:
         return render(request, "coordenador/lista_func.html",{"funcionarios":funcionarios})
     else:
@@ -297,6 +297,7 @@ def update_func(request, id):
             return render(request,"coordenador/update_func.html",{"funcionarios":funcionarios,"plantao":plantao})
         else:
             return redirect('logout_view')
+
 
 class PlantaoView(View):
     form_class = PlantaoForm
