@@ -1,5 +1,6 @@
 {% extends "base.html"%} {% load static %} {% block nav %}
 <ul class="navbar-nav">
+
     {% if user.is_authenticated %}
     <p class="logged-in-p">
         Olá {{ user.username }}, seja bem vindo!

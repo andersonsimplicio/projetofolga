@@ -1,21 +1,24 @@
-{% extends "base.html" %} {% load static %} {% block nav%}
-<ul class="navbar-nav ml-0"></ul>
-{% if user.is_authenticated %}
-<p class="logged-in-p">
-    Olá {{ user.username|upper }}, seja bem vindo!
-    <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
-</p>
-{% endif %}
-</ul>
-<ul class="navbar-nav ml-auto">
-    <li>
-        {% if user.equipe == "RO"%}
-        <span>Cooordenador : Rádio Operadores</span> {%else%}
-        <span>Cooordenador : Auxiliar de Regulação Médica</span> {%endif%}
-    </li>
-</ul>
+{% extends "base.html" %}
+{% load static %}
+{% block nav%}
+   <ul class="navbar-nav ml-0"></ul>
+            {% if user.is_authenticated %}
+            <p class="logged-in-p">
+            Olá {{ user.username|upper }}, seja bem vindo!
+            <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
+            </p>
+            {% endif %}
+        </ul>
 
-{% endblock %} {% block main %}
+        <ul class="navbar-nav ml-auto">
+            <li>
+            {% if user.equipe == "RO"%}
+            <span>Cooordenador : Rádio Operadores</span> {%else%}
+            <span>Cooordenador : Auxiliar de Regulação Médica</span> {%endif%}
+            </li>
+        </ul>
+{% endblock %}
+{% block main %}
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark primary-color">
 
