@@ -13,7 +13,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'listar_func'%}">Funcionários Cadastrados</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'cad_plantao'%}">Cadastrar Plantões</a>
             </li>
             <li class="nav-item">
@@ -52,12 +52,12 @@
 
     <!-- Conteúdo da página -->
     <div id="content">
-        <h2 class="text-center">Cadastrar Plantão</h2>
-            <hr>
         {% block cad%}
-        <div class=" card-body px-lg-5">
-            
-            <form class="text-center border border-light p-5 mr-auto" action="{% url 'cad_plantao'%}" method="POST">
+        <h2 class="text-center">Cadastrar Plantões</h2>
+        <hr>
+        <div class="card-body">
+
+            <form class="text-center border border-light p-5" action="{% url 'cad_plantao'%}" method="POST">
                 {% csrf_token %}
                 <div class="w-75 mx-auto">
                     <div class="form-row mb-2">
