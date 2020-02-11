@@ -1,0 +1,33 @@
+body{
+    background-color: #eee;
+    color: #666 !important;
+}
+
+.login-container,.bg-image{
+    height: 100vh;
+    width: 100%;
+    padding: 0 !important;
+}
+
+.login-form{
+    max-width: 100%;
+    width: 370px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-control{
+    font-size: 15px;
+    min-height: 48px;
+    font-weight: 500;
+}
+
+.bg-image {
+  background-image: url(../imgs/login-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+#lg-box{
+    box-shadow: -2px 0px 10px rgba(.0,.0,.0,.3);
+}

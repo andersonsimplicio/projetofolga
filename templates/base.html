@@ -14,15 +14,18 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
 
-    <!-- Jquery data -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mdb.css' %}"> 
+
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-    <!-- Navbar -->
+    <!-- Navbar
     <nav class="navbar navbar-expand-lg navbar-light nav-color">
         <a class="navbar-brand" class="ml-5" href="#"><img src="{% static 'imgs/cisru.png' %}" class="rounded logo-img d-inline-block align-top ml-5" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,30 +35,27 @@
             {% block nav%} {% endblock %}
 
         </div>
-    </nav>
+    </nav> -->
 
     {% block main %} {% endblock %}
-    <!-- Jquery UI CDN  -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-    <!-- Jquery Cdn -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-    <script src="{% static 'js/jquery.mask.js' %}"></script>
-    <script src="{% static 'js/first.js' %}"></script>
-    <script src="{% static 'js/mes.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/main2.js' %}"></script>
-    <script src="{% static 'js/testando-data.js' %}"></script>
-    <script src="{% static 'js/moment-with-locales.js' %}"></script>
+
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+        <script src="{% static 'js/jquery.mask.js' %}"></script>
+        <script src="{% static 'js/first.js' %}"></script>
+        <script src="{% static 'js/mes.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/main2.js' %}"></script>
+        <script src="{% static 'js/testando-data.js' %}"></script>
+        <script src="{% static 'js/moment-with-locales.js' %}"></script>
+        <script src="{% static 'js/sidebar.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 
 </html>

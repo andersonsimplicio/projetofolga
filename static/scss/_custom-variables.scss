@@ -1,0 +1,18 @@
+// Variáveis personalizadas
+
+//$vermelho: #d32f2f;
+
+$vermelho: #b81010;
+$primary-color: #4285F4;
+
+//Cores
+$material-colors:(
+    'vermelho': $vermelho,
+    'primary-color': $primary-color
+);
+
+
+// Cores Botões
+$mdb-colors:(
+    'vermelho': $vermelho
+);
