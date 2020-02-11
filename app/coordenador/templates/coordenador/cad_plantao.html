@@ -7,6 +7,17 @@
             <img src="{% static 'imgs/cisru-logo.png' %}" id="logo">
         </div>
         <ul class="side-links">
+            <li class="nav-welcome">
+                {% if user.is_authenticated %}
+                <p class="logged-in-p">
+                    Olá <span>{{ user.username|title}}</span>, seja bem-vindo(a)!
+                </p>
+                {% endif %}
+                {% if user.equipe == "RO"%}
+                <span><span>Cooordenador</span>: Rádio Operadores</span> {%else%}
+                <span><span>Cooordenador:</span> Auxiliar de Regulação Médica</span> {%endif%}
+            </li>
+            <hr class="my-2">
             <li class="nav-item">
                 <a class="nav-link " href="{% url 'homecood'%}">Início</a>
             </li>
@@ -31,12 +42,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'search_per_day'%}">Busca por Dia</a>
             </li>
-
+            <li class="nav-item mt-3">
+                <a id="sair-btn" href="{% url 'logout_manager' %}" class="nav-link btn btn-light rounded-pill mb-0">Sair</a>
+            </li>
 
         </ul>
-
-        <a id="sair-btn" href="{% url 'logout_manager' %}" class="btn btn-light rounded-pill mb-0">Sair</a>
-
 
     </div> <!-- Fim Sidebar -->
 

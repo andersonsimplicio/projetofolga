@@ -3,7 +3,8 @@
 
 $(document).ready(function () {
         $(".sidebar").mCustomScrollbar({
-        theme: "minimal"
+        theme: "minimal",
+        scrollInertia: 30
     });
         
 

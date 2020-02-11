@@ -17,9 +17,10 @@
     /* overflow-y: scroll; */
     transition: all 0.3s;
     font-family: 'Noto Sans', sans-serif;
-    /*box-shadow: 0px 5px 10px rgba(0,0,0,.3);*/
+    box-shadow: 0px 5px 10px rgba(0,0,0,.3);
     z-index: 999;
     margin-left: 0px;
+    font-size: .9rem;
 
 }
 
@@ -41,7 +42,7 @@
 
 
 ul{
-    padding: 20px 0;
+    padding: 10px 0 20px 0;
 
 }
 
@@ -51,13 +52,19 @@ ul li.active{
     box-shadow: 0px 0px 5px rgba(0,0,0,.1) inset;
 }
 
+
 ul li a:hover {
     /*color: #fff !important;*/
     background: #940D0D;
-    transition: all 0.3s;
+    transition: all 0.6s;
     
 }
 
+.nav-welcome {
+    font-size: .8rem;
+    background-color: #940d0da1;
+    padding: 10px 10px 10px 16px;
+}
 /*
 .side-collapse{
     position: absolute;
@@ -71,10 +78,6 @@ ul li a:hover {
     box-shadow: none;
     z-index: 998;
     padding: 5px 5px;
-}
-
-div.textWelcome span{
-    font-size: .8rem !important;
 }
 
 

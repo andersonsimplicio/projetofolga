@@ -115,8 +115,7 @@ h1, h2, h3{
 
 #sair-btn{
     position: absolute;
-    bottom: 20px;
-    transform: translateX(calc(100% - 50%));
+    transform: translateX(50%);
     width: 100px;
 }
 
