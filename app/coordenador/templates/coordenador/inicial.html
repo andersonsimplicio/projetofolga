@@ -1,234 +1,222 @@
 {% extends "base.html" %}
 {% load static %}
-{% block nav%}
-<nav class="navbar navbar-expand-lg navbar-light nav-color">
-    <a class="navbar-brand" class="ml-5" href="#">
-        <img src="{% static 'imgs/cisru.png' %}" class="rounded logo-img d-inline-block align-top ml-5" alt=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-   <div class="collapse navbar-collapse " id="navbarNav">
-   <ul class="navbar-nav ml-0"></ul>
-            {% if user.is_authenticated %}
-            <p class="logged-in-p">
-            Olá {{ user.username|upper }}, seja bem vindo!
-            <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
-            </p>
-            {% endif %}
-        </ul>
 
-        <ul class="navbar-nav ml-auto">
-            <li>
-            {% if user.equipe == "RO"%}
-            <span>Cooordenador : Rádio Operadores</span> {%else%}
-            <span>Cooordenador : Auxiliar de Regulação Médica</span> {%endif%}
-            </li>
-        </ul>
-        </div>
-</nav>
-
-{% endblock %}
 {% block main %}
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+<div class="wrapper">
 
-    <!-- Navbar brand -->
-    <a class="navbar-brand active disabled" href="">Coordenador</a>
-
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
-
-        <ul class="navbar-nav mr-auto">
+    <div class="sidebar vermelho">
+        <div class="sidebar-header">
+            <img src="{% static 'imgs/cisru-logo.png' %}" id="logo">
+        </div>
+        <ul class="side-links">
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'homecood'%}">Início</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'listar_func'%}">Funcionários Cadastrados</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cad_plantao'%}">Cadastrar Plantões</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cad_func'%}">Cadastrar Funcionários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cad_folga'%}">Cadastrar Folgas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cad_plantao_extra'%}">Cadastrar Plantão Extra</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'plantao_dia'%}">Folgas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'search_per_day'%}">Busca por Dia</a>
+            </li>
+
+
         </ul>
-    </div>
-</nav>
-<!--/.Navbar-->
 
-<div class="container-fluid mt-5">
+        <a id="sair-btn" href="{% url 'logout_manager' %}" class="btn btn-light rounded-pill mb-0">Sair</a>
 
-    <div class="row">
 
-        <div class="col-3 pt-5">
+    </div> <!-- Fim Sidebar -->
 
-            <p class="h2 text-center p-3">Menu</p>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <a href="{% url 'cad_plantao'%}" class="a-link"><i class="fas fa-calendar-alt pr-2"></i>Cadastrar
-                        Plantões</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="{% url 'cad_func'%}" class="a-link"><i class="fas fa-user-friends"></i>Cadastrar
-                        Funcionário</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="{% url 'cad_folga'%}" class="a-link"><i class="fas fa-calendar-day pr-3"></i>Cadastrar
-                        Folgas</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="{% url 'cad_plantao_extra'%}" class="a-link"><i class="fas fa-address-book"></i>Cadastrar
-                        Plantão Extra</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="{% url 'plantao_dia'%}" class="a-link"><i class="fas fa-calendar-day"></i>
-                        Folgas </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="{% url 'search_per_day' %}" class="a-link"><i class="fas fa-calendar-day"></i>
-                        Busca por Dia </a>
-                </li>
-                <li>
-                    <a href="{% url 'pdf' %}" class="btn btn-red">Exportar escala como Pdf</a>
-                </li>
 
-            </ul>
+    <!-- Botão Sidebar -->
 
+    <nav class="navbar navbar-dark justify-content-end" id="side-nav">
+        <button type="button" id="sidebarCollapse" class="btn btn-vermelho btn-sm side-collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+
+    <!-- Conteúdo da página -->
+    <div id="content">
+        <ul class="navbar-nav ml-0"></ul>
+        {% if user.is_authenticated %}
+        <p class="logged-in-p">
+            Olá {{ user.username|upper }}, seja bem vindo!
+            <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
+        </p>
+        {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li>
+                {% if user.equipe == "RO"%}
+                <span>Cooordenador : Rádio Operadores</span> {%else%}
+                <span>Cooordenador : Auxiliar de Regulação Médica</span> {%endif%}
+            </li>
+        </ul>
+
+
+        {% block cad%}
+
+        <div class="container-fluid mt-5">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-sm text-center" id="tabela1">
+                    <caption>Escala Tarms</caption>
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th scope="row" rowspan="3" class="text-center pb-5">Nomes</th>
+                            <th scope="col" colspan="8" class="text-center"><span id="week" name="week"></span>:
+                                <span id="data"></span>
+                                <br>
+                                <br>
+                                <br>
+                                <span id="hora"></span>
+                            </th>
+                            <th scope="col" colspan="8" class="text-center">
+                                <i class="fas fa-calendar-alt fa-bolt text-light fa-2x pr-3 pb-4"></i><span
+                                    class="h3 ">{{mes}}/
+                                    {{ano}}
+                                </span></th>
+                            <th scope="col" colspan="8" class="text-center pb-5">
+                                <form method="POST" action=".">
+                                    {% csrf_token%}
+                                    <select class=" browser-default custom-select " id="selected_month"
+                                        name="selected_month" style="width:150px;">
+                                        <option value=1>Janeiro</option>
+                                        <option value=2>Fevereiro</option>
+                                        <option value=3>Março</option>
+                                        <option value=4>Abril</option>
+                                        <option value=5>Maio</option>
+                                        <option value=6>Junho</option>
+                                        <option value=7>Julho</option>
+                                        <option value=8>Agosto</option>
+                                        <option value=9>Setembro</option>
+                                        <option value=10>Outubro</option>
+                                        <option value=11>Novembro</option>
+                                        <option value=12>Dezembro</option>
+                                    </select>
+
+                            <th scope="col" colspan="7" class="">
+                                <select class=" browser-default custom-select" name="selected_year"
+                                    style="width:150px;">
+                                    <option value=2020 id="selected_year">2020</option>
+                                    <option value=2021>2021</option>
+                                    <option value=2022>2022</option>
+                                    <option value=2023>2023</option>
+                                    <option value=2024>2024</option>
+                                    <option value=2025>2025</option>
+                                    <option value=2026>2026</option>
+                                    <option value=2027>2027</option>
+                                    <option value=2028>2028</option>
+                                    <option value=2029>2029</option>
+                                    <option value=2030>2030</option>
+                                </select>
+                                <br>
+                                <button type="submit" class="btn btn-sm btn-primary">Selecionar a Data</button>
+                                </form>
+                            </th>
+                        </tr>
+                        <tr class="table-light table-bordered">
+                            {%for days in range%}
+                            <td>{{ days }}</td>
+                            {%endfor%}
+                        </tr>
+                        <tr class="table-light table-bordered">
+                            {%for days in semana%}
+                            <td>{{days}} </td>
+                            {%endfor%}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fun in escala%}
+                        <tr>
+                            <td class="bg-dark text-light">{{fun.nome}}</td>
+                            {% for i in fun.escala %} {% if i == "A"%}
+                            <td class="bg-success">{{i}}</td>
+                            {% elif i == "B"%}
+                            <td class="bg-info">{{i}}</td>
+                            {% elif i == "C"%}
+                            <td class="bg-warning">{{i}}</td>
+                            {% elif i == "D"%}
+                            <td class="bg-danger">{{i}}</td>
+                            {%elif i == "E"%}
+                            <td class="bg-dark text-light">{{i}}</td>
+                            {%endif%}{% endfor %}
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="col-9">
-
-            {% block cad%}
-
-            <div class="container-fluid mt-5">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered table-sm text-center" id="tabela1">
-                        <caption>Escala Tarms</caption>
+        <div class="container mb-5 pb-5">
+            <div class="row">
+                <div class="col">
+                    <table class="table text-center table-striped table-bordered">
                         <thead class="thead-dark">
                             <tr>
-
-                                <th scope="row" rowspan="3" class="text-center pb-5">Nomes</th>
-                                <th scope="col" colspan="8" class="text-center"><span id="week" name="week"></span>:
-                                    <span id="data"></span>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <span id="hora"></span>
-                                </th>
-                                <th scope="col" colspan="8" class="text-center">
-                                    <i class="fas fa-calendar-alt fa-bolt text-light fa-2x pr-3 pb-4"></i><span class="h3 ">{{mes}}/
-                                        {{ano}}
-                                    </span></th>
-                                <th scope="col" colspan="8" class="text-center pb-5">
-                                    <form method="POST" action=".">
-                                        {% csrf_token%}
-                                        <select class=" browser-default custom-select " id="selected_month" name="selected_month" style="width:150px;">
-                                            <option value=1>Janeiro</option>
-                                            <option value=2>Fevereiro</option>
-                                            <option value=3>Março</option>
-                                            <option value=4>Abril</option>
-                                            <option value=5>Maio</option>
-                                            <option value=6>Junho</option>
-                                            <option value=7>Julho</option>
-                                            <option value=8>Agosto</option>
-                                            <option value=9>Setembro</option>
-                                            <option value=10>Outubro</option>
-                                            <option value=11>Novembro</option>
-                                            <option value=12>Dezembro</option>
-                                        </select>
-
-                                        <th scope="col" colspan="7" class="">
-                                            <select class=" browser-default custom-select" name="selected_year" style="width:150px;">
-                                        <option value=2020 id="selected_year">2020</option>
-                                        <option value=2021>2021</option>
-                                        <option value=2022>2022</option>
-                                        <option value=2023>2023</option>
-                                        <option value=2024>2024</option>
-                                        <option value=2025>2025</option>
-                                        <option value=2026>2026</option>
-                                        <option value=2027>2027</option>
-                                        <option value=2028>2028</option>
-                                        <option value=2029>2029</option>
-                                        <option value=2030>2030</option>
-                                    </select>
-                                            <br>
-                                            <button type="submit" class="btn btn-sm btn-primary">Selecionar a Data</button>
-                                    </form>
-                                    </th>
-                            </tr>
-                            <tr class="table-light table-bordered">
-                                {%for days in range%}
-                                <td>{{ days }}</td>
-                                {%endfor%}
-                            </tr>
-                            <tr class="table-light table-bordered">
-                                {%for days in semana%}
-                                <td>{{days}} </td>
-                                {%endfor%}
+                                <th scope="col" colspan="2">Folguistas </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for fun in escala%}
+                            {% for func in plantonistas%} {% if func.extra == 'Folguista'%}
                             <tr>
-                                <td class="bg-dark text-light">{{fun.nome}}</td>
-                                {% for i in fun.escala %} {% if i == "A"%}
-                                <td class="bg-success">{{i}}</td>
-                                {% elif i == "B"%}
-                                <td class="bg-info">{{i}}</td>
-                                {% elif i == "C"%}
-                                <td class="bg-warning">{{i}}</td>
-                                {% elif i == "D"%}
-                                <td class="bg-danger">{{i}}</td>
-                                {%elif i == "E"%}
-                                <td class="bg-dark text-light">{{i}}</td>
-                                {%endif%}{% endfor %}
+                                <td class="bg-dark text-light">E</td>
+                                <td>{{func.nome}} {{func.sobrenome}}</td>
+                                {%endif%} {%endfor%}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table text-center table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" colspan="2">Folgas aos Domingos </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in domingos.items %}
+                            <tr>
+                                <td class="bg-dark text-light">{{key}}</td>
+                                <td>Domingo dia : {{value}}</td>
                             </tr>
                             {% endfor %}
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <div class="container mb-5 pb-5">
-                <div class="row">
-                    <div class="col">
-                        <table class="table text-center table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" colspan="2">Folguistas </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for func in plantonistas%} {% if func.extra == 'Folguista'%}
-                                <tr>
-                                    <td class="bg-dark text-light">E</td>
-                                    <td>{{func.nome}} {{func.sobrenome}}</td>
-                                    {%endif%} {%endfor%}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col">
-                        <table class="table text-center table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" colspan="2">Folgas aos Domingos </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for key, value in domingos.items %}
-                                <tr>
-                                    <td class="bg-dark text-light">{{key}}</td>
-                                    <td>Domingo dia : {{value}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-
-            {% endblock%}
         </div>
+
+        {% endblock%}
     </div>
 </div>
+
+
+
+
+</div> <!-- Fim Conteúdo Página -->
+
+
+</div> <!-- Fim Wrapper -->
+
 {% endblock%}

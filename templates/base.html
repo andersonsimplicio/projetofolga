@@ -1,6 +1,5 @@
 <!DOCTYPE html> {% load static%}
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +15,13 @@
     <!--     Custom ScrollBar -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.css" integrity="sha256-vzvc8t5wPyTbhOFnzgJMhNtbJ83bSqIaCbGxC6IhcVQ=" crossorigin="anonymous" />
 
+    <link rel="stylesheet" href="{% static 'css/mdb.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
         <!-- Font Awesome -->
@@ -29,38 +33,24 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light nav-color">
-        <a class="navbar-brand" class="ml-5" href="#"><img src="{% static 'imgs/cisru.png' %}" class="rounded logo-img d-inline-block align-top ml-5" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarNav">
-            {% block nav%} {% endblock %}
-
-        </div>
-    </nav>
-
-       {% block nav%} {% endblock %}
+      {% block nav%} {% endblock %}
       {% block main %} {% endblock %}
-      <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script>
-
-    <script src="{% static 'js/jquery.mask.js' %}"></script>
-    <script src="{% static 'js/first.js' %}"></script>
-    <script src="{% static 'js/mes.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/main2.js' %}"></script>
-    <script src="{% static 'js/moment-with-locales.js' %}"></script>
-<!--    &lt;!&ndash; <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha256-/YAntTqXy9V4LoXFkI5WPDl3ZwP/knn1BljmMJJ7QWc=" crossorigin="anonymous"></script> &ndash;&gt;-->
-    <script src="{% static 'js/sidebar.js' %}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+        <script src="{% static 'js/jquery.mask.js' %}"></script>
+        <script src="{% static 'js/first.js' %}"></script>
+        <script src="{% static 'js/mes.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/main2.js' %}"></script>
+        <script src="{% static 'js/testando-data.js' %}"></script>
+        <script src="{% static 'js/moment-with-locales.js' %}"></script>
+        <script src="{% static 'js/sidebar.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 
 </html>

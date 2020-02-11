@@ -1,7 +1,8 @@
 {% extends "coordenador/cad_plantao.html" %} {% load static %} {% block nav%} {{block.super}} {% endblock %} {% block menu %} {{block.super}} {% endblock%} {% block cad%}
 
-<div class="card-body px-lg-5 pt-5">
-    <p class="h2 text-center"><i class="fas fa-calendar-day"> Cadastrar Folga</i> </p>
+<div class="card-body px-lg-5">
+    <h2 class="text-center">Cadastrar Folgas</h2>
+    <hr>
     {% for message in messages%}
     <div class="alert alert-danger"><strong>Erro!
         </strong>{{message}}</div>
