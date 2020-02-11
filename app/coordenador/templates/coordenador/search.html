@@ -1,7 +1,8 @@
 {% extends "coordenador/cad_plantao.html" %} {% load static %} {% block nav%} {{block.super}} {% endblock %} {% block menu %} {{block.super}} {% endblock%} {% block cad%}
 
 <div class="card-body px-lg-5 pt-5">
-    <p class="h2 text-center"><i class="fas fa-calendar-day"> Escolha o dia</i> </p>
+    <h2 class="text-center">Escolha o Dia</h2>
+    <hr>
     <form class="text-center border border-light p-5 mr-auto" action="{% url 'search_per_day'%}" method="POST">
         {% for message in messages%}
         <div class="alert alert-danger text-center"><strong>
@@ -14,7 +15,7 @@
                 </div>
                 <div class="col-8">
                     <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control" name="data" id="datepicker_plantao_extra">
+                        <input type="date" class="form-control" name="data" id="datepicker_plantao_extra">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>

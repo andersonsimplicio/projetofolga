@@ -7,11 +7,12 @@
 {{block.super}}
 {% endblock%}
 {% block cad%}
-<div class="card-body px-lg-5 pt-5">
+<div class="card-body px-lg-5">
     {% if messages %} {%for message in messages %}
     <div class="alert alert-danger"><strong>{{message}}</strong></div>
     {% endfor %} {% endif %}
-    <p class="h2 text-center"><i class=" fas fa-address-book"> Cadastrar Plantão Extra</i> </p>
+    <h2 class="text-center">Cadastrar Plantão Extra</h2>
+    <hr>
     <form class="text-center border border-light p-5 mr-auto" action="{% url 'cad_plantao_extra'%}" method="POST">
         {% csrf_token %}
         <div class="w-75 mx-auto">
