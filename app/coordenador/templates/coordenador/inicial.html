@@ -1,21 +1,34 @@
-{% extends "base.html" %} {% load static %} {% block nav%}
-<ul class="navbar-nav ml-0"></ul>
-{% if user.is_authenticated %}
-<p class="logged-in-p">
-    Olá {{ user.username|upper }}, seja bem vindo!
-    <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
-</p>
-{% endif %}
-</ul>
-<ul class="navbar-nav ml-auto">
-    <li>
-        {% if user.equipe == "RO"%}
-        <span>Cooordenador : Rádio Operadores</span> {%else%}
-        <span>Cooordenador : Auxiliar de Regulação Médica</span> {%endif%}
-    </li>
-</ul>
+{% extends "base.html" %}
+{% load static %}
+{% block nav%}
+<nav class="navbar navbar-expand-lg navbar-light nav-color">
+    <a class="navbar-brand" class="ml-5" href="#">
+        <img src="{% static 'imgs/cisru.png' %}" class="rounded logo-img d-inline-block align-top ml-5" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+   <div class="collapse navbar-collapse " id="navbarNav">
+   <ul class="navbar-nav ml-0"></ul>
+            {% if user.is_authenticated %}
+            <p class="logged-in-p">
+            Olá {{ user.username|upper }}, seja bem vindo!
+            <span class="sair"><a href="{% url 'logout_manager'%}">Sair</a></span>
+            </p>
+            {% endif %}
+        </ul>
 
-{% endblock %} {% block main %}
+        <ul class="navbar-nav ml-auto">
+            <li>
+            {% if user.equipe == "RO"%}
+            <span>Cooordenador : Rádio Operadores</span> {%else%}
+            <span>Cooordenador : Auxiliar de Regulação Médica</span> {%endif%}
+            </li>
+        </ul>
+        </div>
+</nav>
+
+{% endblock %}
+{% block main %}
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark primary-color">
 
