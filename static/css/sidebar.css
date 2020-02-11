@@ -73,6 +73,10 @@ ul li a:hover {
     padding: 5px 5px;
 }
 
+div.textWelcome span{
+    font-size: .8rem !important;
+}
+
 
 /*@media (max-width: 977px) {
     .sidebar.active {

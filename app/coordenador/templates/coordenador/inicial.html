@@ -31,11 +31,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'search_per_day'%}">Busca por Dia</a>
             </li>
-
-
+            <li class="nav-item mt-5">
+                <a id="sair-btn" href="{% url 'logout_manager' %}" class="nav-link btn btn-light rounded-pill mb-0">Sair</a>
+            </li>
         </ul>
 
-        <a id="sair-btn" href="{% url 'logout_manager' %}" class="btn btn-light rounded-pill mb-0">Sair</a>
+        
 
 
     </div> <!-- Fim Sidebar -->
@@ -72,8 +73,10 @@
 
 
         {% block cad%}
-
-        <div class="container-fluid mt-5">
+        <div class="text-center">
+            <a href="{% url 'pdf' %}" class="btn btn-red rounded-pill">Exportar escala como Pdf</a>
+        </div>
+        <div class="container-fluid">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-sm text-center" id="tabela1">
                     <caption>Escala Tarms</caption>
